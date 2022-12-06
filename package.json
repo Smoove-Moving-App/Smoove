@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server/koaServer.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"NODE_ENV=development webpack serve --open\" \"nodemon ./server/server.js\""
   },
