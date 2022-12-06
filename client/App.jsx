@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react'
 import Login from './components/Login.jsx';
-import Signup from './components/Signup.jsx'
+import Signup from './components/Signup.jsx';
+import Main from './components/Main.jsx'
 
 export default function App() {
   function handleClick(e) {
@@ -15,8 +16,7 @@ export default function App() {
 
   return(
       <div>
-        <Login />
-        <Signup />
+       <Main />
       </div>
   )
 }
