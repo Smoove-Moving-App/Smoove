@@ -1,0 +1,7 @@
+CREATE TABLE data (
+"_id" SERIAL NOT NULL,
+"test_1" VARCHAR NOT NULL,
+"watched" BOOLEAN NOT NULL DEFAULT FALSE,
+CONSTRAINT "movies_pk" PRIMARY KEY ("_id")
+);
+

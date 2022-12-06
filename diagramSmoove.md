@@ -11,4 +11,5 @@ client --> server --> database
 
 set up a server
 listen on a port 
+app. 
 
