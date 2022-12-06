@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react'
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx'
 
 export default function App() {
   function handleClick(e) {
@@ -12,7 +14,10 @@ export default function App() {
   }
 
   return(
-    <div><button onClick={(e) => handleClick(e)}>Click me!</button></div>
+      <div>
+        <Login />
+        <Signup />
+      </div>
   )
 }
 
