@@ -4,7 +4,7 @@ const cityController = {};
 cityController.getDetails = async(req, res, next) => {
   try {
     console.log('in cityController')  
-    const data = await fetch('https://api.teleport.org/api/urban_areas/slug:san-diego/details/')
+    const data = await fetch('https://api.teleport.org/api/urban_areas/string%3Ateleport%3A9q8yy/')
     console.log(data)
     return next();
 }
