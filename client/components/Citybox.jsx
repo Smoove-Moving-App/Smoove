@@ -51,9 +51,14 @@ export default function Citybox(){
     const input = document.getElementById('myInput');
     const newCity = input.value.replaceAll(' ', '-').toLowerCase();
     console.log('DASH', newCity)
-    axios.post(`https://localhost:3000/${newCity}`)
-    .then(function (response) {
-      console.log(response)
+    axios({
+    method: 'post',
+    url: '/getDetails',
+    data: {
+      city: newCity,
+    }})
+    .then(res => {
+    console.log(res);
   })
   .catch(function (error) {
     console.log('Error here:', error);

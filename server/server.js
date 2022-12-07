@@ -16,7 +16,7 @@ app.use(cors());
 //   return res.status(200).json('Hello??')
 // })
 
-app.get("/getDetails", cityController.getDetails, (req, res) => {
+app.post("/getDetails", cityController.getDetails, (req, res) => {
   console.log("back at server");
   return res.status(200).json(res.locals.cityDetails);
 });
