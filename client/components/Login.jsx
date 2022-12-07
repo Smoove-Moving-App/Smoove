@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar.jsx';
+import { Link } from "react-router-dom";
+
 
 function Login(){
   const[email, setEmail] = useState(""); 
@@ -80,7 +82,7 @@ return (
             </div>
         </div>
         <div id='login-button'>
-            <button className='button-90' type='submit' id='login-btn' disabled={!validateForm()}>Login</button>
+        <Link to="/"><button type='submit' id='login-btn' disabled={!validateForm()}>Login</button></Link>
         </div>
     </form>
   </div>

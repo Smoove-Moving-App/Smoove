@@ -15,6 +15,7 @@ export default function BarChart(props) {
       ],
       options: {
         chart: {
+          colors: ['#546E7A', '#E91E63'],
           animations: {
             easing: 'easeinout',
             speed: 500,

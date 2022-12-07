@@ -119,15 +119,19 @@ export default function Citybox(id) {
       <div id="cityBoxSearch">
         <div className="autoComplete">
           <h3>Enter City: </h3>
+          <div className='inputs'>
           <input
+            className='inputText'
             onChange={(e) => handleChange(e)}
             id={`myInput${id.id}`}
             type="text"
             name="myCity"
             placeholder="city"
           ></input>
+          <input id='submitBtn' type="submit" onClick={(e) => submitButtonClick(e)}></input>
+          </div>
         </div>
-        <input type="submit" onClick={(e) => submitButtonClick(e)}></input>
+        
         <div className="autoComplete-list">{items}</div>
       </div>
       {overallScoresData}
