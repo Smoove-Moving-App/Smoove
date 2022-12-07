@@ -3,11 +3,9 @@ const usersController = {};
 const bcrypt = require("bcrypt");
 
 usersController.login = async (req, res, next) => {
+  console.log('login hit')
   try {
-    console.log("in usersController");
-    // const data = await fetch('https://api.teleport.org/api/urban_areas/slug:san-diego/details')
-    // const res = await data.json();
-    // console.log(res.categories);
+    
     return next();
   } catch (err) {
     return next({
@@ -23,8 +21,16 @@ usersController.signUp = async (req, res, next) => {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const query = `INSERT INTO users (email, password) VALUES ('${email}', '${hashedPassword}');`
+    //const query = `INSERT INTO users (email, password) VALUES ('${email}', '${hashedPassword}');`;
+    const query = `
+      INSERT INTO users (email, password) 
+      VALUES ('${email}', '${hashedPassword}');
+      SELECT * FROM users WHERE email = '${email}';
+      WHERE
+
+      `
     await dbConnection.query(query);
+    
     return next();
   } catch (err) {
     return next({
@@ -35,4 +41,21 @@ usersController.signUp = async (req, res, next) => {
   }
 };
 
+usersController.signUpLogin = async (req, res, next) => {
+  try {
+    
+    // ask db if email/pw exist 
+    // res.locals.user = {email, password}
+    // put in bcrypt and await unhashing/compare !!!!
+    // if true, return next()
+    // give to FE to decide . 
+    return next();
+  } catch (err) {
+    return next({
+      log: "error in usersController.signUpLogin",
+      status: 400,
+      message: { err: "error in cityController.signUpLogin" },
+    });
+  }
+};
 module.exports = usersController;
