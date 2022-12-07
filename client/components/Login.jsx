@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-
+import axios from 'axios';
 
 
 function Login(){
@@ -13,21 +13,43 @@ function Login(){
 
   function handleSubmit(e){
     e.preventDefault();
-    fetch(`user/login/${email}/${password}`)
-      .then(data => data.json())
-      .then(data => {
-        console.log(data);
-        if(!data) {
-          alert('Invalid login');
-          setEmail('');
-          setPassword('');
-        } else { 
-            // Get data to app
-            props.setUser(data);
-            navigate(`/upload`);
-        }
-      })
-      .catch(err => alert('please try again'));
+    axios({
+      method: 'post',
+      url: '/login',
+      data: {
+        email: email,
+        password: password
+      }
+    }) .then(data => data.json())
+    .then(data => {
+      console.log(data);
+      if(!data) {
+        alert('Invalid login');
+        setEmail('');
+        setPassword('');
+      } else { 
+          // Get data to app
+          props.setUser(data);
+          navigate(`/upload`);
+      }
+    })
+    .catch(err => alert('please try again'));
+
+    // fetch(`user/login/${email}/${password}`)
+    //   .then(data => data.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     if(!data) {
+    //       alert('Invalid login');
+    //       setEmail('');
+    //       setPassword('');
+    //     } else { 
+    //         // Get data to app
+    //         props.setUser(data);
+    //         navigate(`/upload`);
+    //     }
+    //   })
+    //   .catch(err => alert('please try again'));
   }
 
 return (

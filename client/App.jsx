@@ -16,6 +16,8 @@ export default function App() {
 
   return(
       <div>
+        <Signup />
+        <Login />
        <Main />
       </div>
   )

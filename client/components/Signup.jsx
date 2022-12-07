@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 export default function Signup(props) {
   //const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -14,8 +14,27 @@ export default function Signup(props) {
   //TODO: Make a post request to DB to store the user 
   function handleSubmit(e){
     e.preventDefault();
-    console.log(email, password, confirmPassword)
-   
+    axios({
+      method: 'post',
+      url: '/signUp',
+      data: {
+        email: email,
+        password: password
+      }
+    }) .then(data => data.json())
+    .then(data => {
+      console.log(data);
+      if(!data) {
+        alert('Invalid Sign Up');
+        setEmail('');
+        setPassword('');
+      } else { 
+          // Get data to app
+          props.setUser(data);
+          navigate(`/upload`);
+      }
+    })
+    .catch(err => alert('please try again'));
   }
   
   return (
