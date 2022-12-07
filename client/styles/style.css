@@ -117,9 +117,27 @@ li:hover {
 .cityHeader {
   font-size: 1.6rem;
   margin-bottom: 0px;
+  margin-top: 25px;
 }
 
 .mainPageContainer {
   display: flex;
   justify-content: center;
 }
+
+.headingWStar {
+  display: flex;
+  position: relative;
+  height: 3rem;
+  margin-bottom: 0px;
+  align-items: center;
+}
+
+.star {
+  position: absolute;
+  cursor: pointer;
+  /* color: #e4e5e9; */
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+

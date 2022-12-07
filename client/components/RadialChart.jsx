@@ -1,5 +1,7 @@
 import Chart from "react-apexcharts";
 import React, { useState, useEffect } from "react";
+import StarRating from "./StarRating.jsx"
+
 
 export default function overallScoreChart(data) {
   const [overallScore, setOverallScores] = useState("");
@@ -93,7 +95,10 @@ export default function overallScoreChart(data) {
 
   return (
     <div id="card">
-      <h3 className="cityHeader">{data.scores.city}</h3>
+      <div className="headingWStar">
+        <h3 className="cityHeader">{data.scores.city}</h3> 
+        <StarRating data={data} />
+      </div>
       <div id="chart">
         <Chart
           options={options.options}
