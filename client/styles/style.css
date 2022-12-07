@@ -2,10 +2,17 @@
 body {
   font: 16px Arial;
 }
+
+#cityBoxSearch{
+    /* display: none; */
+    border: 1px solid black;
+    width: 50%;
+}
 .autoComplete {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+  border: 1px solid blue;
 }
 input {
   border: 1px solid transparent;
@@ -40,6 +47,7 @@ input[type=submit] {
 }
 
 .autoComplete-list {
+  position:absolute;
   width: 215px;
   cursor: pointer;
   background-color: #fff;
@@ -63,7 +71,20 @@ input[type=submit] {
 .buttonContainerRight {
   margin-right: 10px;
 }
+.scoreContainer{
+  display: flex;
+  height: 1.6rem;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.scoreLabel{
+margin-left: 9rem;
+}
+
+.scores{
+margin-right: 10rem;
+}
 .navButtons {
   margin-left: 10px;
 }
@@ -80,3 +101,78 @@ li {
 li:hover {
   background-color: #e9e9e9;
 }
+
+#dataState {
+    border: 1px solid black;
+    max-height: 1000px;
+    display: flex;
+    flex-direction: row;
+}
+
+#categoryList{
+  width:300px;
+}
+#scoreList{
+    width: 300px;
+}
+
+#cat{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+  margin: 10px
+}
+
+#score{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.catList{
+    border:1px solid white;
+}
+
+.scoreList{
+    border: 1px solid gray;
+    background-color: rgb(146, 226, 146);
+    border-radius: 10px;
+}
+
+#card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cityHeader {
+  font-size: 1.6rem;
+  margin-bottom: 0px;
+  margin-top: 25px;
+}
+
+.mainPageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.headingWStar {
+  display: flex;
+  position: relative;
+  height: 3rem;
+  margin-bottom: 0px;
+  align-items: center;
+}
+
+.star {
+  position: absolute;
+  cursor: pointer;
+  /* color: #e4e5e9; */
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
