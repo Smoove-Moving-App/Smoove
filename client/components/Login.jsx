@@ -3,8 +3,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar.jsx';
 
-
-
 function Login(){
   const[email, setEmail] = useState(""); 
   const[password, setPassword] = useState("");
@@ -22,7 +20,7 @@ function Login(){
         email: email,
         password: password
       }
-    }) .then(data => data.json())
+    })
     .then(data => {
       console.log(data);
       if(!data) {
@@ -82,7 +80,7 @@ return (
             </div>
         </div>
         <div id='login-button'>
-            <button type='submit' id='login-btn' disabled={!validateForm()}>Login</button>
+            <button className='button-90' type='submit' id='login-btn' disabled={!validateForm()}>Login</button>
         </div>
     </form>
   </div>
