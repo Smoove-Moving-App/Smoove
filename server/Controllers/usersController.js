@@ -50,6 +50,9 @@ usersController.signUp = async (req, res, next) => {
     });
   }
 };
+
+
+
 // check to see if user exists
 usersController.validateUSer = async (req, res, next) => {
   console.log('loginCheck hit')
