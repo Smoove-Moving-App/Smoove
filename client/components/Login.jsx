@@ -5,8 +5,6 @@ import Navbar from './Navbar.jsx';
 import { Link } from "react-router-dom";
 
 
-
-
 function Login(){
   const[email, setEmail] = useState(""); 
   const[password, setPassword] = useState("");
@@ -24,7 +22,7 @@ function Login(){
         email: email,
         password: password
       }
-    }) .then(data => data.json())
+    })
     .then(data => {
       console.log(data);
       if(!data) {
