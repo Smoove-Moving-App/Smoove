@@ -3,46 +3,22 @@ import axios from 'axios';
 import '../styles/style.css'
 
 
-//TODO: implement type in functionality
-// export default function Citybox(){
-// const [leftBoxData, setLeftBoxData] = useState();
-// const [rightBoxData, seRightBoxData] = useState();
-// const cities = ['Atlanta', 'New York', 'Chicago', 'Omaha', 'Albequrque', 'New Orleans', 'Charleton']
-
-// // function autoComplete(input, arr) {
-
-// // }
-
-// function handleChange(e){
-//   console.log('this is synthetic event', e.target.value)
-  
-// }
-
-// return(
-  
-//     <div id="CityBoxContainer">
-//       <form autoComplete="off">
-//         <div className="autoComplete">
-//           <input onChange={(e) => handleChange(e)} id="myInput" type="text" name="myCity" placeholder="city"></input>
-//         </div>
-//         <input type="submit"></input>
-//       </form>
-//     </div>
-  
-// )
-// }
 
 
 export default function Citybox(){
-const [leftBoxData, setLeftBoxData] = useState();
-const [rightBoxData, seRightBoxData] = useState();
+  const [leftBoxData, setLeftBoxData] = useState();
+  const [rightBoxData, seRightBoxData] = useState();
+  const [items, setItems] = useState('')
+  const [cities, setCities] = useState('');
 
-useEffect(() => {
+  useEffect(() => {
   console.log('inside use effect')
-  axios.get('https://api.teleport.org/api/cities/')
+  axios.get('https://api.teleport.org/api/urban_areas/')
   .then(function (response) {
-    // handle success
-    console.log(response);
+    const urban = response.data._links['ua:item']
+    const cityNames = urban.map(el => el.name)
+    console.log(response)
+    setCities(cityNames);
   })
   .catch(function (error) {
     // handle error
@@ -53,19 +29,50 @@ useEffect(() => {
   });
 
 }, [])
+  
+  function autoFill(e) {
+    const input = document.getElementById("myInput")
+    input.value = e.target.innerText;
+    setItems('');
+  }
+  
+  function handleChange(e){
+    e.preventDefault();
+    const currWord = e.target.value
+    let arr = [];
+    for (let i = 0; i < cities.length; i++) {
+      const slicedCity = cities[i].slice(0, currWord.length);
+      if (currWord.toLowerCase() === slicedCity.toLowerCase()) {
+        arr.push(<li className='autoComplete-item' key={'key' + i} onClick={autoFill}>{cities[i]}</li>)
+        setItems(arr)
+      }
+      if(currWord.length === 0){
+        setItems('')
+      } 
+    }
+  }
 
-return(
-  <div className="menuDiv">
-  <select className="dropDownMenu" multiple size="4" >
-    <option value="amaranth">amaranth</option>
-    <option value="cauliflower">cauliflower</option>
-    <option value="blueberry">blueberry</option>
-    <option value="shorts">shorts</option>
-    <option value="potato">potato</option>
-    <option value="cranberries">cranberries</option>
-    <option value="kale">kale</option>
-    <option value="melon">melon</option>
-  </select>
-</div>
-)
-}
+  function submitButtonClick() {
+    const input = document.getElementById('myInput');
+    const newCity = input.value.replaceAll(' ', '-').toLowerCase();
+    console.log('DASH', newCity)
+    axios.post(`https://localhost:3000/${newCity}`)
+    .then(function (response) {
+      console.log(response)
+  })
+  .catch(function (error) {
+    console.log('Error here:', error);
+  })
+  }
+  
+  return(
+      <div id="CityBoxContainer">
+        <h3>Enter City: </h3>
+        <div className="autoComplete">
+          <input onChange={(e) => handleChange(e)} id="myInput" type="text" name="myCity" placeholder="city"></input>
+        </div>
+        <input type="submit" onClick={(e) => submitButtonClick(e)}></input>
+        <div className="autoComplete-list">{items}</div>
+      </div>
+  )
+  }
