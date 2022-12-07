@@ -13,6 +13,7 @@ export default function Signup(props) {
   } 
 
   //TODO: Make a post request to DB to store the user 
+  // send to server with email and username
   function handleSubmit(e){
     e.preventDefault();
     axios({
