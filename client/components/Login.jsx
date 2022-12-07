@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar.jsx';
+import { Link } from "react-router-dom";
+
 
 
 
@@ -82,7 +84,7 @@ return (
             </div>
         </div>
         <div id='login-button'>
-            <button type='submit' id='login-btn' disabled={!validateForm()}>Login</button>
+        <Link to="/"><button type='submit' id='login-btn' disabled={!validateForm()}>Login</button></Link>
         </div>
     </form>
   </div>

@@ -73,7 +73,7 @@ export default function Signup(props) {
                 </div>
             </div>
             <div id='signup-button'>
-                <button type='submit' id='login-btn' disabled={!validateForm()}>Sign Up</button>
+            <Link to="/login"><button type='submit' id='login-btn' disabled={!validateForm()}>Sign Up</button></Link>
             </div>
         </form>
         </div>
