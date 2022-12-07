@@ -3,14 +3,12 @@ import axios from "axios";
 import RadialChart from "./RadialChart.jsx";
 import "../styles/style.css";
 
-export default function Citybox() {
-  const [leftBoxData, setLeftBoxData] = useState();
-  const [rightBoxData, seRightBoxData] = useState();
+export default function Citybox(id) {
   const [items, setItems] = useState("");
   const [cities, setCities] = useState("");
   const [data, setData] = useState("");
   const [overallScoresData, setOverallScoresData] = useState("");
-  const [inputUniqueId, setinputUniqueId] = useState("");
+
 
   useEffect(() => {
     console.log("inside use effect");
@@ -28,8 +26,9 @@ export default function Citybox() {
   }, []);
 
   function autoFill(e) {
-    console.log('AUTOFILL', e);
-    const input = document.getElementById("myInput");
+    console.log('ID HERE!', id)
+    const input = document.getElementById(`myInput${id.id}`);
+    console.log(input);
     input.value = e.target.innerText;
     setItems("");
   }
@@ -79,7 +78,7 @@ export default function Citybox() {
   }
 
   function submitButtonClick(e) {
-    const input = document.getElementById("myInput");
+    const input = document.getElementById(`myInput${id.id}`);
     const newCity = input.value.replaceAll(" ", "-").toLowerCase();
     axios({
       method: "post",
@@ -91,7 +90,7 @@ export default function Citybox() {
       .then((res) => {
         console.log("RES", res);
         // setData(res.data);
-        displayScores(res.data, myInput.value);
+        displayScores(res.data, input.value);
         input.value = "";
       })
       .catch(function (error) {
@@ -106,7 +105,7 @@ export default function Citybox() {
           <h3>Enter City: </h3>
           <input
             onChange={(e) => handleChange(e)}
-            id="myInput"
+            id={`myInput${id.id}`}
             type="text"
             name="myCity"
             placeholder="city"

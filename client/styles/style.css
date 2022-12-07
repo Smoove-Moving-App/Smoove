@@ -73,11 +73,13 @@ input[type=submit] {
 }
 .scoreContainer{
   display: flex;
+  height: 1.6rem;
+  align-items: center;
   justify-content: space-between;
 }
 
 .scoreLabel{
-margin-left: 5rem;
+margin-left: 9rem;
 }
 
 .scores{
@@ -101,7 +103,8 @@ li:hover {
 }
 
 #dataState {
-    border: 1px solid red;
+    border: 1px solid black;
+    max-height: 1000px;
 }
 
 #card{
@@ -118,4 +121,5 @@ li:hover {
 
 .mainPageContainer {
   display: flex;
+  justify-content: center;
 }
