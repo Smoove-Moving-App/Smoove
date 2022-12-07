@@ -22,11 +22,11 @@ app.post("/getDetails", cityController.getDetails, (req, res) => {
 });
 
 app.post("/login", usersController.login, (req, res) => {
-  console.log("login hit");
-  return res.status(200).send("trying to login");
+  console.log(res.locals.response);
+  return res.status(200).json(res.locals.response);
 });
 
-app.post("/signUp", usersController.signUp, usersController.signUpLoginlogin, (req, res) => {
+app.post("/signUp", usersController.signUp, usersController.signUpLogin, (req, res) => {
   return res.status(200).send("trying to signUp"); // add some sort of redirect to login 
 });
 
