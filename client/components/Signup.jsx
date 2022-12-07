@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar.jsx';
 //import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 export default function Signup(props) {
   //const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -76,7 +77,7 @@ export default function Signup(props) {
                   </div>
               </div>
               <div id='signup-button'>
-                  <button className='button-90' type='submit' id='login-btn' disabled={!validateForm()}>Sign Up</button>
+                 <Link to='/login'> <button className='button-90' type='submit' id='login-btn' disabled={!validateForm()}>Sign Up</button> </Link>
               </div>
           </form>
           </div>
