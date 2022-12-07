@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon ./server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"NODE_ENV=development webpack serve --open\" \"nodemon ./server/server.js\""
   },
@@ -32,7 +32,8 @@
     "pg": "^8.8.0",
     "psql": "^0.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
