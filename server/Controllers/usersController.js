@@ -10,8 +10,17 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 usersController.login = async (req, res, next) => {
-  console.log('login hit')
+  const {email, password} = req.body;
   try {
+    // access user from table with correct email
+    const query = `SELECT * FROM users WHERE email = '${email}';`
+    const result = await dbConnection.query(query);
+    const {username} = result.rows[0];
+    // access password encrypted password from same user
+    const hashPass = result.rows[0].password;
+    // compare encrypted password to hashPass, correctPass will be a boolean
+    const correctPass = await bcrypt.compare(password, hashPass);
+    res.locals.response = {username: username, email: email, success: correctPass};
     return next();
   } catch (err) {
     return next({
@@ -32,7 +41,7 @@ usersController.signUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const query = `INSERT INTO users (email, password) VALUES ('${email}', '${hashedPassword}');`;
     await dbConnection.query(query);
-    return next(); // go to next middleware function => userController.signUpLogin
+    return next();
   } catch (err) {
     return next({
       log: "error in usersController.signUp",

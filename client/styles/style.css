@@ -47,6 +47,7 @@ input[type=submit] {
 }
 
 .autoComplete-list {
+  position:absolute;
   width: 215px;
   cursor: pointer;
   background-color: #fff;
@@ -72,11 +73,13 @@ input[type=submit] {
 }
 .scoreContainer{
   display: flex;
+  height: 1.6rem;
+  align-items: center;
   justify-content: space-between;
 }
 
 .scoreLabel{
-margin-left: 5rem;
+margin-left: 9rem;
 }
 
 .scores{
@@ -100,6 +103,76 @@ li:hover {
 }
 
 #dataState {
-    width: 40%;
-    border: 1px solid red;
+    border: 1px solid black;
+    max-height: 1000px;
+    display: flex;
+    flex-direction: row;
 }
+
+#categoryList{
+  width:300px;
+}
+#scoreList{
+    width: 300px;
+}
+
+#cat{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+  margin: 10px
+}
+
+#score{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.catList{
+    border:1px solid white;
+}
+
+.scoreList{
+    border: 1px solid gray;
+    background-color: rgb(146, 226, 146);
+    border-radius: 10px;
+}
+
+#card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cityHeader {
+  font-size: 1.6rem;
+  margin-bottom: 0px;
+  margin-top: 25px;
+}
+
+.mainPageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.headingWStar {
+  display: flex;
+  position: relative;
+  height: 3rem;
+  margin-bottom: 0px;
+  align-items: center;
+}
+
+.star {
+  position: absolute;
+  cursor: pointer;
+  /* color: #e4e5e9; */
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
