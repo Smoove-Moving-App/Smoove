@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 
 export default function Navbar(){
@@ -8,12 +9,12 @@ export default function Navbar(){
     <div className="navbar">
       <div className="buttonsContainer">
         <div className="buttonContainerLeft">
-          <button className="navButtons">Home</button>
+          <Link to="/"><button className="navButtons">Home</button></Link>
         </div>
         <p>Welcome {user}!</p>
         <div className="buttonContainerRight">
-          <button className="navButtons">Login</button>
-          <button className="navButtons">Sign up</button>
+          <Link to="/login"><button className="navButtons">Login</button></Link>
+          <Link to="/signup"><button className="navButtons">Sign up</button></Link>
         </div>
       </div>
     </div>

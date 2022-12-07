@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar.jsx';
 //import { useNavigate } from 'react-router-dom';
 
 export default function Signup(props) {
@@ -20,6 +21,7 @@ export default function Signup(props) {
   
   return (
     <div id='signup-body'>
+      <Navbar />
         <form id='signup-box' onSubmit={handleSubmit}>
             <span className='primary-text'>SIGN UP</span>
             <div id='signup-boxes'>

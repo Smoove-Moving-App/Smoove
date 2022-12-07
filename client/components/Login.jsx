@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import Navbar from './Navbar.jsx';
 
 
 
@@ -32,6 +33,7 @@ function Login(){
 
 return (
   <div id='login-body'>
+  <Navbar />
   <div id='main-login-comp'>
   <h1 className='primary-text' id='site-title'>SMOOVE</h1>
     <form id='login-box' onSubmit={handleSubmit}>

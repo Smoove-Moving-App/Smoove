@@ -21,13 +21,8 @@ export default function Citybox(){
     setCities(cityNames);
   })
   .catch(function (error) {
-    // handle error
     console.log(error);
   })
-  .then(function () {
-    // always executed
-  });
-
 }, [])
   
   function autoFill(e) {
