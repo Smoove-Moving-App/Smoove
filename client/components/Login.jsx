@@ -80,7 +80,7 @@ return (
             </div>
         </div>
         <div id='login-button'>
-            <button type='submit' id='login-btn' disabled={!validateForm()}>Login</button>
+            <button className='button-90' type='submit' id='login-btn' disabled={!validateForm()}>Login</button>
         </div>
     </form>
   </div>
