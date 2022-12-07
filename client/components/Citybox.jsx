@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RadialChart from "./RadialChart.jsx";
+import BarChart from "./BarChart.jsx";
 import "../styles/style.css";
 
 export default function Citybox(id) {
@@ -8,6 +9,8 @@ export default function Citybox(id) {
   const [cities, setCities] = useState("");
   const [data, setData] = useState("");
   const [overallScoresData, setOverallScoresData] = useState("");
+  const [categoriesScore, setCategoriesScore] = useState("");
+  //const [nameScore, setNameScore] = useState([]);
 
 
   useEffect(() => {
@@ -88,10 +91,23 @@ export default function Citybox(id) {
       },
     })
       .then((res) => {
-        console.log("RES", res);
-        // setData(res.data);
-        displayScores(res.data, input.value);
-        input.value = "";
+        // console.log("RES", res);
+        // // setData(res.data);
+        // displayScores(res.data, input.value);
+        // input.value = "";
+      const chartData = {city: input.value, overallScore: Math.floor(res.data.teleport_city_score)};
+      setOverallScoresData(<RadialChart scores={chartData} />);
+      const obj = {};
+      const catName = res.data.categories.map(el => el.name);
+      const catScore = res.data.categories.map(el => Math.floor(el.score_out_of_10));
+      for(let i = 0; i < catName.length; i++){
+        obj[catName[i]] = catScore[i]
+      }
+    console.log('THIS IS OBJ', obj)
+    //setNameScore(Object.entries(obj));
+    //console.log('THIS IS NAME SCORE', nameScore)
+    setCategoriesScore(<BarChart state={Object.entries(obj)} />);
+    input.value = '';
       })
       .catch(function (error) {
         console.log("Error here:", error);
@@ -114,10 +130,8 @@ export default function Citybox(id) {
         <input type="submit" onClick={(e) => submitButtonClick(e)}></input>
         <div className="autoComplete-list">{items}</div>
       </div>
-      <div id="dataState">
-        {overallScoresData}
-        {data}
-      </div>
+      {overallScoresData}
+      {categoriesScore}
     </div>
   );
 }

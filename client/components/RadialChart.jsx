@@ -104,7 +104,7 @@ export default function overallScoreChart(data) {
           options={options.options}
           series={series}
           type="radialBar"
-          height={350}
+          height={250}
         />
       </div>
     </div>

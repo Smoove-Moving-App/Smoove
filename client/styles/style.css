@@ -105,6 +105,41 @@ li:hover {
 #dataState {
     border: 1px solid black;
     max-height: 1000px;
+    display: flex;
+    flex-direction: row;
+}
+
+#categoryList{
+  width:300px;
+}
+#scoreList{
+    width: 300px;
+}
+
+#cat{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+  margin: 10px
+}
+
+#score{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.catList{
+    border:1px solid white;
+}
+
+.scoreList{
+    border: 1px solid gray;
+    background-color: rgb(146, 226, 146);
+    border-radius: 10px;
 }
 
 #card{
