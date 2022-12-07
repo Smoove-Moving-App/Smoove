@@ -26,8 +26,8 @@ app.post("/login", usersController.login, (req, res) => {
   return res.status(200).send("trying to login");
 });
 
-app.post("/signUp", usersController.signUp, (req, res) => {
-  return res.status(200).send("trying to signUp");
+app.post("/signUp", usersController.signUp, usersController.signUpLoginlogin, (req, res) => {
+  return res.status(200).send("trying to signUp"); // add some sort of redirect to login 
 });
 
 app.use((err, req, res, next) => {
@@ -42,3 +42,14 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => console.log("Server listening to port", port));
+
+// upon sign up => store email && pW
+// Signup was successful 
+// redirect to login (to login again)
+
+// UC sends email, PW to DB (usercontroller.signup)
+// ask DB for EMAIL, PW 
+// take same email, pw
+// pass through UC.login (usercontroller.signuplogin)
+// hope success 
+// redirect to homepage to search city. (res.redirect)
