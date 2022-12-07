@@ -1,11 +1,17 @@
 const dbConnection = require("../models/dbConnection.js");
 const usersController = {};
 const bcrypt = require("bcrypt");
+//user enters emai password
+// userController.loginExistsCheck => does user exist ?
+   // if user exists => userController.login
+   // if user does not exist => userController.signUp
+
+
+const saltRounds = 10;
 
 usersController.login = async (req, res, next) => {
   console.log('login hit')
   try {
-    
     return next();
   } catch (err) {
     return next({
@@ -17,21 +23,16 @@ usersController.login = async (req, res, next) => {
 };
 
 usersController.signUp = async (req, res, next) => {
+  console.log ("signUp hit")
+  console.log(req.body.email)
+  console.log (req.body.password)
   const { email, password } = req.body;
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    //const query = `INSERT INTO users (email, password) VALUES ('${email}', '${hashedPassword}');`;
-    const query = `
-      INSERT INTO users (email, password) 
-      VALUES ('${email}', '${hashedPassword}');
-      SELECT * FROM users WHERE email = '${email}';
-      WHERE
-
-      `
+    const query = `INSERT INTO users (email, password) VALUES ('${email}', '${hashedPassword}');`;
     await dbConnection.query(query);
-    
-    return next();
+    return next(); // go to next middleware function => userController.signUpLogin
   } catch (err) {
     return next({
       log: "error in usersController.signUp",
@@ -40,16 +41,38 @@ usersController.signUp = async (req, res, next) => {
     });
   }
 };
+// check to see if user exists
+usersController.validateUSer = async (req, res, next) => {
+  console.log('loginCheck hit')
+  const { email, password } = req.body;
+  try {
+    const  data  =  await client.query(`SELECT * FROM users WHERE email= $1;`, [email]); //check if user already exists
+    const arr = data.rows;
+    if (arr.length > 0) {
+      return res.status(400).send("User already exists");
+    } // else => user does not exist => go to next middleware function => userController.signUp
+    return next(); // go to next middleware function => userController.login
+  }
+  catch (err) {
+    return next({
+      log: "error in usersController.loginExistsCheck",
+      status: 400,
+      message: { err: "error in cityController.loginExistsCheck" },
+    });
+  }
+};
+
+
 
 usersController.signUpLogin = async (req, res, next) => {
-  try {
-    
-    // ask db if email/pw exist 
-    // res.locals.user = {email, password}
-    // put in bcrypt and await unhashing/compare !!!!
-    // if true, return next()
-    // give to FE to decide . 
-    return next();
+ console.log ('signUpLogin hit')
+ console.log (req.body.email)
+
+try { 
+  const { email, password } = req.body;
+  `INSERT INTO users (name, email) VALUES ($1,$2);`, [user.email, user.password]
+  await dbConnection.query(query);
+  return next();
   } catch (err) {
     return next({
       log: "error in usersController.signUpLogin",
@@ -59,3 +82,15 @@ usersController.signUpLogin = async (req, res, next) => {
   }
 };
 module.exports = usersController;
+// we only have one login page
+// if the user enters the email 
+// we check if the email is in the database
+// if the email is in the database
+// we check if the password is correct
+// if the password is correct
+// we redirect to the homepage
+// if the password is incorrect
+// we redirect to the login page
+// if the email is not in the database
+// we redirect to the login page
+

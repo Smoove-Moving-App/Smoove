@@ -26,7 +26,7 @@ app.post("/login", usersController.login, (req, res) => {
   return res.status(200).send("trying to login");
 });
 
-app.post("/signUp", usersController.signUp, usersController.signUpLoginlogin, (req, res) => {
+app.post("/signUp", usersController.signUp, usersController.signUpLogin, (req, res) => {
   return res.status(200).send("trying to signUp"); // add some sort of redirect to login 
 });
 
